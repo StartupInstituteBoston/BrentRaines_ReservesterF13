@@ -17,9 +17,9 @@
 development:
   adapter: postgresql
   encoding: unicode
-  database: wedding_site_development
+  database: reservester_development
   pool: 5
-  username: wedding_site
+  username: reservester
   password:
 
   # Connect on a TCP socket. Omitted by default since the client uses a
@@ -46,15 +46,15 @@ development:
 test:
   adapter: postgresql
   encoding: unicode
-  database: wedding_site_test
+  database: reservester_test
   pool: 5
-  username: wedding_site
+  username: reservester
   password:
 
 production:
   adapter: postgresql
   encoding: unicode
-  database: wedding_site_production
+  database: reservester_production
   pool: 5
-  username: wedding_site
+  username: reservester
   password:
