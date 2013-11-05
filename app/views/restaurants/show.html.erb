@@ -1,0 +1,8 @@
+<h1><%= @restaurant.name %></h1>
+
+<%= link_to "Edit Restaurant", edit_restaurant_path %>
+<%= link_to "Delete Restaurant", @restaurant, method: :delete,
+     data: { confirm: "Are you sure?" }, title: @restaurant.name %>
+
+<%= link_to "Back to Restaurants", restaurants_path %>
+
