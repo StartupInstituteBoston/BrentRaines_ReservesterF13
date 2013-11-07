@@ -4,7 +4,7 @@ describe "Restaurant pages" do
 
   subject { page }
 
-  describe "Index" do
+  describe "Index page" do
     before do
       @restaurant = FactoryGirl.create(:restaurant)
       @restaurant.save
@@ -19,7 +19,7 @@ describe "Restaurant pages" do
 
   end
 
-  describe "New" do
+  describe "New page" do
     before { visit new_restaurant_path }
 
     it { should have_content("Add a new restaurant") }
@@ -27,7 +27,7 @@ describe "Restaurant pages" do
 
   end
 
-  describe "Edit" do
+  describe "Edit page" do
     let(:restaurant) { FactoryGirl.create(:restaurant) }
     before { visit edit_restaurant_path(restaurant) }
 
@@ -35,7 +35,7 @@ describe "Restaurant pages" do
 
   end
 
-  describe "Show" do
+  describe "Show page" do
     let(:restaurant) { FactoryGirl.create(:restaurant) }
     describe "with valid restaurant" do
       before { visit restaurant_path(restaurant) }
@@ -44,5 +44,7 @@ describe "Restaurant pages" do
     end
 
   end
+
+  describe "creating a new restaurant"
 
 end

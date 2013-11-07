@@ -7,7 +7,6 @@ describe PhotoUploader do
   before do
     PhotoUploader.enable_processing = true
     @uploader = PhotoUploader.new(@restaurant, :photo)
-    @uploader.store!
   end
 
   after do

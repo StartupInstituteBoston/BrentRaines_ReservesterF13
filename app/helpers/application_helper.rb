@@ -10,4 +10,10 @@ module ApplicationHelper
     end
   end
 
+  def full_address(restaurant)
+    address = "#{restaurant.street},#{restaurant.city},#{restaurant.state},#{restaurant.zip}"
+    address = address.gsub(' ', '+')
+    address
+  end
+
 end
