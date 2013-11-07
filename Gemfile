@@ -7,6 +7,7 @@ gem 'rails', '4.0.0'
 gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
+gem 'devise'
 
 # Use pg as the database for Active Record
 gem 'pg'
