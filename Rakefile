@@ -3,9 +3,7 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-unless Rails.env.production?
-  require 'dotenv/tasks'
-end
+require 'dotenv/tasks'
 
 task :mytask => :dotenv do
     # things that require .env
