@@ -8,4 +8,8 @@ FactoryGirl.define do
     phone "012-345-6789"
     description "Lorem ipsum"
   end
+
+  factory :photo do
+    photo Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/myfiles/test_photo.jpg')))
+  end
 end
