@@ -6,8 +6,8 @@ describe PhotoUploader do
 
   before do
     PhotoUploader.enable_processing = true
-    @uploader = PhotoUploader.new(:photo)
-    @uploader.store!(File.open("#{Rails.root}/tmp/uploads/#{Rails.env}/images/"))
+    @uploader = PhotoUploader.new(@restaurant, :photo)
+    @uploader.store!
   end
 
   after do
