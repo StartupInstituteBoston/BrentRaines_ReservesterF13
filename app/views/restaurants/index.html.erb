@@ -5,6 +5,7 @@
 <% @restaurants.each do |restaurant| %>
   <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
   <p><%= restaurant.description %></p>
+  <%= image_tag restaurant.photo_url(:thumb).to_s %>
 <% end %>
 
 <%= link_to "Add New Restaurant", new_restaurant_path %>

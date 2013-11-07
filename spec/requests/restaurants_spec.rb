@@ -1,20 +1,25 @@
 require 'spec_helper'
 
-describe "Restaurants" do
+describe "Restaurant pages" do
 
   subject { page }
 
-  describe "Index page" do
-    before  { visit restaurants_path }
+  describe "Index" do
+    before do
+      @restaurant = FactoryGirl.create(:restaurant)
+      @restaurant.save
+      visit restaurants_path
+    end
 
     it { should have_content("Restaurants") }
     it { should have_title("Restaurants") }
 
     it { should have_link("Add New Restaurant", href: new_restaurant_path) }
+    it { should have_link(@restaurant.name, href: restaurant_path(@restaurant)) }
 
   end
 
-  describe "New page" do
+  describe "New" do
     before { visit new_restaurant_path }
 
     it { should have_content("Add a new restaurant") }
@@ -22,11 +27,21 @@ describe "Restaurants" do
 
   end
 
-  describe "Edit page" do
+  describe "Edit" do
+    let(:restaurant) { FactoryGirl.create(:restaurant) }
+    before { visit edit_restaurant_path(restaurant) }
+
+    it { should have_title("Edit") }
 
   end
 
-  describe "Show page" do
+  describe "Show" do
+    let(:restaurant) { FactoryGirl.create(:restaurant) }
+    describe "with valid restaurant" do
+      before { visit restaurant_path(restaurant) }
+
+      it { should have_title(restaurant.name) }
+    end
 
   end
 

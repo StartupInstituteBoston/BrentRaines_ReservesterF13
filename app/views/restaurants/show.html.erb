@@ -1,4 +1,8 @@
+<% provide(:title, @restaurant.name) %>
+
 <h1><%= @restaurant.name %></h1>
+<p><%= @restaurant.description %></p>
+<%= image_tag @restaurant.photo_url %>
 
 <%= link_to "Edit Restaurant", edit_restaurant_path %>
 <%= link_to "Delete Restaurant", @restaurant, method: :delete,
