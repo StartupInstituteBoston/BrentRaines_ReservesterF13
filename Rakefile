@@ -3,10 +3,4 @@
 
 require File.expand_path('../config/application', __FILE__)
 
-require 'dotenv/tasks'
-
-task :mytask => :dotenv do
-    # things that require .env
-end
-
 Reservester::Application.load_tasks
