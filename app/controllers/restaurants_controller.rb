@@ -47,22 +47,16 @@ class RestaurantsController < ApplicationController
     redirect_to restaurants_path
   end
 
-  protected
-
-    def owner_signed_in?
-      user_signed_in? && current_user.role == "owner"
-    end
-
-    def correct_user?
-      @restaurant = current_user.restaurants.find_by(id: params[:id])
-      redirect_to root_url if @restaurant.nil?
-    end
-
   private
 
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :street, :city, :state, :zip,
                                  :phone, :photo, :photo_url, :menu, :menu_url)
+    end
+
+    def correct_user?
+      @restaurant = current_user.restaurants.find_by(id: params[:id])
+      redirect_to root_url if @restaurant.nil?
     end
 
 end
