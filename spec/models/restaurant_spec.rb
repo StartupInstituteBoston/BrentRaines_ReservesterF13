@@ -12,6 +12,9 @@ describe Restaurant do
   it { should respond_to(:state) }
   it { should respond_to(:zip) }
   it { should respond_to(:phone) }
+  it { should respond_to(:photo) }
+  it { should respond_to(:menu) }
+  it { should respond_to(:user) }
 
   it { should be_valid }
 
@@ -20,43 +23,13 @@ describe Restaurant do
     it { should_not be_valid }
   end
 
-  describe "when name is already taken" do
-    before do
-      @invalid_restaurant = @restaurant.dup
-    end
-
-    subject { @invalid_restaurant }
-
-    it { should_not be_valid }
-  end
-
   describe "when description is greater than 200 char" do
     before { @restaurant.description = "a"*201 }
     it { should_not be_valid }
   end
 
-  describe "when street is not present" do
-    before { @restaurant.street = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when city is not present" do
-    before { @restaurant.city = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when state is not present" do
-    before { @restaurant.state = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when zip is not present" do
-    before { @restaurant.zip = " " }
-    it { should_not be_valid }
-  end
-
-  describe "when phone is not present" do
-    before { @restaurant.phone = " " }
+  describe "when user is not present" do
+    before { @restaurant.user = nil }
     it { should_not be_valid }
   end
 

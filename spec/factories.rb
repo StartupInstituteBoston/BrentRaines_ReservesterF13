@@ -1,4 +1,5 @@
 FactoryGirl.define do
+
   factory :restaurant do
     sequence(:name)   { |n| "Restaurant #{n}" }
     sequence(:street) { |n| (0+n).to_s + " Third Street" }
@@ -7,9 +8,13 @@ FactoryGirl.define do
     zip "02141"
     phone "012-345-6789"
     description "Lorem ipsum"
+    user
   end
 
-  factory :photo do
-    photo Rack::Test::UploadedFile.new(File.open(File.join(Rails.root, '/spec/fixtures/myfiles/test_photo.jpg')))
+  factory :user do
+    first_name "Test"
+    sequence(:last_name) { |n| "User #{n}" }
+    sequence(:email)  { |n| "test_user#{n}@example.com" }
+    password "foobar123"
   end
 end

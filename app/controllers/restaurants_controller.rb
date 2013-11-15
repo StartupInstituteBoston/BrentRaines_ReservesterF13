@@ -1,19 +1,27 @@
 class RestaurantsController < ApplicationController
 
+  before_action :authenticate_user!
+  before_action :user_signed_in?, only: [:new, :create, :destroy]
+  before_action :correct_user?, only: [:edit, :update, :destroy]
+
   def index
     @restaurants = Restaurant.order(:name)
   end
 
   def show
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by(id: params[:id])
   end
 
   def new
-    @restaurant = Restaurant.new
+    if user_signed_in?
+      @restaurant = Restaurant.new
+    else
+      redirect_to root_path
+    end
   end
 
   def create
-    @restaurant = Restaurant.new(restaurant_params)
+    @restaurant = current_user.restaurants.build(restaurant_params)
     if @restaurant.save
       redirect_to @restaurant
     else
@@ -22,11 +30,11 @@ class RestaurantsController < ApplicationController
   end
 
   def edit
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by(id: params[:id])
   end
 
   def update
-    @restaurant = Restaurant.find(params[:id])
+    @restaurant = Restaurant.find_by(id: params[:id])
     if @restaurant.update_attributes(restaurant_params)
       redirect_to @restaurant
     else
@@ -35,14 +43,26 @@ class RestaurantsController < ApplicationController
   end
 
   def destroy
-    Restaurant.find(params[:id]).destroy
+    Restaurant.find_by(id: params[:id]).destroy
     redirect_to restaurants_path
   end
+
+  protected
+
+    def owner_signed_in?
+      user_signed_in? && current_user.role == "owner"
+    end
+
+    def correct_user?
+      @restaurant = current_user.restaurants.find_by(id: params[:id])
+      redirect_to root_url if @restaurant.nil?
+    end
 
   private
 
     def restaurant_params
-    params.require(:restaurant).permit(:name, :description, :street, :city, :state, :zip,
+      params.require(:restaurant).permit(:name, :description, :street, :city, :state, :zip,
                                  :phone, :photo, :photo_url, :menu, :menu_url)
     end
+
 end

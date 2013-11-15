@@ -8,6 +8,8 @@ gem 'carrierwave'
 gem 'rmagick'
 gem 'fog'
 gem 'devise'
+gem 'cancan'
+gem 'simplecov', :require => false, :group => :test
 
 # Use pg as the database for Active Record
 gem 'pg'
@@ -38,12 +40,12 @@ gem 'jbuilder'
 group :development, :test do
   gem 'rspec-rails'
   gem 'dotenv-rails'
+  gem 'factory_girl_rails'
 end
 
 group :test do
   gem 'selenium-webdriver'
   gem 'capybara'
-  gem 'factory_girl_rails'
 end
 
 group :production do

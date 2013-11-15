@@ -6,7 +6,7 @@
   <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
   <p><%= restaurant.description %></p>
   <%= image_tag restaurant.photo_url(:thumb).to_s %>
+  <%= link_to "Edit Restaurant", edit_restaurant_path(restaurant) if current_user?(restaurant.user) %>
 <% end %>
 
-<%= link_to "Add New Restaurant", new_restaurant_path %>
-  
+<%= link_to "Add New Restaurant", new_restaurant_path if user_signed_in? %>

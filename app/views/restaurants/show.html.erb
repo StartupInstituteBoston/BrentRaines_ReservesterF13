@@ -1,16 +1,18 @@
 <% provide(:title, @restaurant.name) %>
 
 <h1><%= @restaurant.name %></h1>
+<h3>Owner: <%= @restaurant.user.full_name %></h3>
 <p><%= @restaurant.description %></p>
 <%= image_tag @restaurant.photo_url %>
 <%= link_to 'Download Menu', @restaurant.menu_url, target: "_blank" %>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{full_address(@restaurant)}&zoom=16&size=400x400\
 &markers=color:blue%7C#{full_address(@restaurant)}&sensor=false" %>
 
-
-<%= link_to "Edit Restaurant", edit_restaurant_path %>
-<%= link_to "Delete Restaurant", @restaurant, method: :delete,
-     data: { confirm: "Are you sure?" }, title: @restaurant.name %>
+<% if current_user?(@restaurant.user) %>
+  <%= link_to "Edit Restaurant", edit_restaurant_path %>
+  <%= link_to "Delete Restaurant", @restaurant, method: :delete,
+       data: { confirm: "Are you sure?" }, title: @restaurant.name %>
+<% end %>
 
 <%= link_to "Back to Restaurants", restaurants_path %>
 

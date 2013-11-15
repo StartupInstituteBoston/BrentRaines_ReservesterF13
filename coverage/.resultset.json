@@ -1,0 +1,75 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/user/Projects/rails_projects/reservester/app/models/user.rb": [
+        1,
+        null,
+        1,
+        1,
+        1,
+        1,
+        null,
+        null,
+        1,
+        null,
+        null,
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/user/Projects/rails_projects/reservester/app/helpers/application_helper.rb": [
+        1,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        0,
+        null,
+        null,
+        null,
+        1,
+        0,
+        0,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/user/Projects/rails_projects/reservester/app/helpers/restaurants_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/user/Projects/rails_projects/reservester/app/helpers/sessions_helper.rb": [
+        1,
+        null,
+        1,
+        0,
+        null,
+        null,
+        null
+      ],
+      "/Users/user/Projects/rails_projects/reservester/app/helpers/static_pages_helper.rb": [
+        1,
+        null
+      ],
+      "/Users/user/Projects/rails_projects/reservester/app/helpers/users_helper.rb": [
+        1,
+        null
+      ]
+    },
+    "timestamp": 1384538396
+  }
+}

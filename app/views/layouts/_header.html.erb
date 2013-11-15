@@ -1,0 +1,14 @@
+<header>
+  <nav class="navbar navbar-fixed navbar-inverse" role="navigation">
+    <%= link_to "Reservester", root_path, class: "navbar-brand navbar-left" %>
+    <p class="navbar-text navbar-right">
+      <% if user_signed_in? %>
+        <%= link_to 'Sign out', destroy_user_session_path, method: "delete" %>/
+        <%= link_to 'Edit user info', edit_user_registration_path %>
+      <% else %>
+        <%= link_to 'Sign up', new_user_registration_path %>/
+        <%= link_to 'Sign in', new_user_session_path %>
+      <% end %>
+    </p>
+  </nav>
+</header>
