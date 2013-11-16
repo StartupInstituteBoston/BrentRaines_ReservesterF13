@@ -4,7 +4,7 @@
 <h3>Owner: <%= @restaurant.user.full_name %></h3>
 <p><%= @restaurant.description %></p>
 <%= image_tag @restaurant.photo_url %>
-<%= link_to 'Download Menu', @restaurant.menu_url, target: "_blank" %>
+<%= link_to 'Download Menu', @restaurant.menu_url, target: "_blank" unless @restaurant.menu_url.nil? %>
 <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{full_address(@restaurant)}&zoom=16&size=400x400\
 &markers=color:blue%7C#{full_address(@restaurant)}&sensor=false" %>
 
@@ -14,5 +14,30 @@
        data: { confirm: "Are you sure?" }, title: @restaurant.name %>
 <% end %>
 
-<%= link_to "Back to Restaurants", restaurants_path %>
+<%= Reservation.all.each {|x| x.inspect} %>
 
+<%= form_for @restaurant do |f| %>
+  
+  <h2>Make a reservation:</h2>
+  <%= f.fields_for :reservations do |reservation_form| %>
+
+    <% if reservation_form.object.new_record? %>
+      <%= reservation_form.label :email %>
+      <%= reservation_form.text_field :email %>
+
+      <%= reservation_form.label :time %>
+      <%= reservation_form.date_select :time %>
+      <%= reservation_form.time_select :time, ignore_date: true %>
+
+      <%= reservation_form.label :comment %>
+      <%= reservation_form.text_area :comment %>
+
+      <%= reservation_form.submit "Submit", class: "btn btn-large btn-primary" %>
+
+    <% end %>
+
+  <% end %>
+
+<% end %>
+
+<%= link_to "Back to Restaurants", restaurants_path %>

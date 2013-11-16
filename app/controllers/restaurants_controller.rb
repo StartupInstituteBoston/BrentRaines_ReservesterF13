@@ -10,6 +10,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
+    1.times { @restaurant.reservations.build }
   end
 
   def new
@@ -24,8 +25,10 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurants.build(restaurant_params)
     if @restaurant.save
       redirect_to @restaurant
+      flash[:sucess] = "Restaurant added!"
     else
       render 'new'
+      flash[:error] = "There was an error, please try again."
     end
   end
 
@@ -51,7 +54,8 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :street, :city, :state, :zip,
-                                 :phone, :photo, :photo_url, :menu, :menu_url)
+                                 :phone, :photo, :photo_url, :menu, :menu_url, 
+                                 reservations_attributes: [:email, :time, :comment] )
     end
 
     def correct_user?

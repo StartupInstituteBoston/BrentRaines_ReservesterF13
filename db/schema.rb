@@ -11,10 +11,21 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131112141813) do
+ActiveRecord::Schema.define(version: 20131115211147) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "reservations", force: true do |t|
+    t.string   "email"
+    t.datetime "time"
+    t.text     "comment"
+    t.integer  "restaurant_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "reservations", ["restaurant_id"], name: "index_reservations_on_restaurant_id", using: :btree
 
   create_table "restaurants", force: true do |t|
     t.string   "name"
