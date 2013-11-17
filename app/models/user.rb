@@ -16,9 +16,7 @@ class User < ActiveRecord::Base
   end
 
   def full_name
-    first_name = self.first_name unless self.first_name.nil?
-    last_name = self.last_name unless self.last_name.nil?
-    "#{first_name} #{last_name}"
+    "#{self.first_name} #{self.last_name}"
   end
 
 end
