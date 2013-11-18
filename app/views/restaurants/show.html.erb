@@ -12,7 +12,9 @@
   <%= link_to "Edit Restaurant", edit_restaurant_path %>
   <%= link_to "Delete Restaurant", @restaurant, method: :delete,
        data: { confirm: "Are you sure?" }, title: @restaurant.name %>
-  <h4>Reservations:</h4>
+<% end %>
+
+<% if current_user?(@restaurant.user) && !@restaurant.reservations.empty? %>
   <table class="table">
     <tr>
       <th>Time</th>
@@ -21,39 +23,34 @@
       <th></th>
     </tr>
     <% @restaurant.reservations.each do |reservation| %>
-      <tr>
-        <td><%= reservation.time %></td>
-        <td><%= reservation.email %></td>
-        <td><%= reservation.comment %></td>
-        <td><%= link_to "Marked as confirmed", reservation, method: :delete, data: { confirm: "Are you sure?" } %></td>
-      </tr>
+      <% unless reservation.time.nil? %>
+        <tr>
+          <td><%= reservation.time %></td>
+          <td><%= reservation.email %></td>
+          <td><%= reservation.comment %></td>
+          <td><%= link_to "Marked as confirmed", ([@restaurant, reservation]), method: :delete, data: { confirm: "Are you sure?" } %></td>
+        </tr>
+      <% end %>
     <% end %>
   </table>
 <% end %>
 
+<%= form_for([@restaurant, @reservation]) do |f| %>
 
-<%= form_for @restaurant do |f| %>
-  
-  <h2>Make a reservation:</h2>
-  <%= f.fields_for :reservations do |reservation_form| %>
+  <%= f.label :time %>
+  <%= f.date_select :time, ignore_time: true %>
+  <%= f.time_select :time %>
 
-    <% if reservation_form.object.new_record? %>
-      <%= reservation_form.label :email %>
-      <%= reservation_form.text_field :email %>
+  <%= f.label :email %>
+  <%= f.email_field :email %>
 
-      <%= reservation_form.label :time %>
-      <%= reservation_form.date_select :time %>
-      <%= reservation_form.time_select :time, ignore_date: true %>
+  <%= f.label :comment %>
+  <%= f.text_area :comment %>
 
-      <%= reservation_form.label :comment %>
-      <%= reservation_form.text_area :comment %>
-
-      <%= reservation_form.submit "Submit", class: "btn btn-large btn-primary" %>
-
-    <% end %>
-
-  <% end %>
+  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
 
 <% end %>
+
+
 
 <%= link_to "Back to Restaurants", restaurants_path %>

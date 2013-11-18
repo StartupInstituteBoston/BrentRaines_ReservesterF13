@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
-    1.times { @restaurant.reservations.build }
+    @reservation = @restaurant.reservations.build
   end
 
   def new
@@ -54,8 +54,7 @@ class RestaurantsController < ApplicationController
 
     def restaurant_params
       params.require(:restaurant).permit(:name, :description, :street, :city, :state, :zip,
-                                 :phone, :photo, :photo_url, :menu, :menu_url, 
-                                 reservations_attributes: [:email, :time, :comment] )
+                                 :phone, :photo, :photo_url, :menu, :menu_url)
     end
 
     def correct_user?
