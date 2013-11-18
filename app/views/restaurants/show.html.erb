@@ -12,9 +12,25 @@
   <%= link_to "Edit Restaurant", edit_restaurant_path %>
   <%= link_to "Delete Restaurant", @restaurant, method: :delete,
        data: { confirm: "Are you sure?" }, title: @restaurant.name %>
+  <h4>Reservations:</h4>
+  <table class="table">
+    <tr>
+      <th>Time</th>
+      <th>Email</th>
+      <th>Comments</th>
+      <th></th>
+    </tr>
+    <% @restaurant.reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.time %></td>
+        <td><%= reservation.email %></td>
+        <td><%= reservation.comment %></td>
+        <td><%= link_to "Marked as confirmed", reservation, method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  </table>
 <% end %>
 
-<%= Reservation.all.each {|x| x.inspect} %>
 
 <%= form_for @restaurant do |f| %>
   
