@@ -10,7 +10,7 @@ class RestaurantsController < ApplicationController
 
   def show
     @restaurant = Restaurant.find_by(id: params[:id])
-    @reservation = @restaurant.reservations.build
+    @reservation = Reservation.new
   end
 
   def new

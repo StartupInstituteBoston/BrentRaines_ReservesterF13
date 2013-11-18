@@ -10,6 +10,7 @@ gem 'fog'
 gem 'devise'
 gem 'cancan'
 gem 'simplecov', :require => false, :group => :test
+gem 'growl'
 
 # Use pg as the database for Active Record
 gem 'pg'

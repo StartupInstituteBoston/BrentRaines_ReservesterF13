@@ -12,9 +12,6 @@
   <%= link_to "Edit Restaurant", edit_restaurant_path %>
   <%= link_to "Delete Restaurant", @restaurant, method: :delete,
        data: { confirm: "Are you sure?" }, title: @restaurant.name %>
-<% end %>
-
-<% if current_user?(@restaurant.user) && !@restaurant.reservations.empty? %>
   <table class="table">
     <tr>
       <th>Time</th>
@@ -22,8 +19,8 @@
       <th>Comments</th>
       <th></th>
     </tr>
-    <% @restaurant.reservations.each do |reservation| %>
-      <% unless reservation.time.nil? %>
+    <% if @restaurant.reservations.any? %>
+      <% @restaurant.reservations.each do |reservation| %>
         <tr>
           <td><%= reservation.time %></td>
           <td><%= reservation.email %></td>
@@ -31,6 +28,10 @@
           <td><%= link_to "Marked as confirmed", ([@restaurant, reservation]), method: :delete, data: { confirm: "Are you sure?" } %></td>
         </tr>
       <% end %>
+    <% else %>
+      <tr>
+        <td colspan=4>No reservations</td>
+      </tr>
     <% end %>
   </table>
 <% end %>

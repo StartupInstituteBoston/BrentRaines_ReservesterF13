@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content='text/html; charset=UTF-8' http-equiv='Content-Type' />
+  </head>
+  <body>
+    <h1>Thanks for making a reservation through Reservester!</h1>
+    <p>The details of your reservation are below:</p>
+    <ul>
+      <li>Restaurant: <%= @restaurant.name %></li>
+      <li>Time: <%= @reservation.time %></li>
+      <li>Comments: <%= @reservation.comment %></li>
+    </ul>
+  </body>
+</html>
