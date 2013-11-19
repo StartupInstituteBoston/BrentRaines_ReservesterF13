@@ -1,10 +1,19 @@
 @import bootstrap
 @import compass
 
+/* Overriding Bootstrap */
+
+.navbar-default
+  background-color: rgba(white, 0.9)
+  border-color: #ccc
+
 /* universal */
 
 html
   overflow-y: scroll
+
+body
+  margin-top: 75px
 
 section
   overflow: auto
@@ -16,6 +25,9 @@ textarea
   text-align: center
   h1
     margin-bottom: 10px
+
+.container
+  position: relative
 
 /* typography */
 
@@ -51,9 +63,8 @@ input, textarea, select, .uneditable-input
   position: relative
   min-height: 275px
   width: 100%
-  border: 1px solid #bbb
-  border-radius: 5px
-  background-color: rgba(#eee, 0.5)
+  border: 1px solid #ccc
+  border-radius: 3px
   padding: 15px
   margin: 20px 0
   h3, p
@@ -66,9 +77,6 @@ input, textarea, select, .uneditable-input
   bottom: 0
   right: 0
   margin: 5px 10px
-
-.new-restaurant
-  float: right
 
 /* Restaurant page */
 

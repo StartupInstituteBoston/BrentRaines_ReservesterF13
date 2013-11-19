@@ -2,8 +2,6 @@
 
 <%= link_to "Add New Restaurant", new_restaurant_path, class: "new-restaurant" if user_signed_in? %>
 
-<h1>Restaurants</h1>
-
 <div class="restaurants">
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant-profile">
