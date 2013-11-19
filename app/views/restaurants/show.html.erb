@@ -1,11 +1,11 @@
 <% provide(:title, @restaurant.name) %>
 
 <% if current_user?(@restaurant.user) %>
-  <ul class="restaurant-edit">
-    <li><%= link_to "Edit Restaurant", edit_restaurant_path %></li>
-    <li><%= link_to "Delete Restaurant", @restaurant, method: :delete,
-         data: { confirm: "Are you sure?" }, title: @restaurant.name %></li>
-  </ul>
+  <div class="restaurant-edit">
+    <%= button_to "Edit Restaurant", edit_restaurant_path, class: "btn btn-default" %>
+    <%= button_to "Delete Restaurant", @restaurant, method: :delete,
+      data: { confirm: "Are you sure?" }, title: @restaurant.name, class: "btn btn-default" %>
+  </div>
 <% end %>
 
 <h1><%= @restaurant.name %></h1>
