@@ -7,7 +7,7 @@ class ReservationsController < ApplicationController
     if @reservation.save
       flash[:success] = "Reservation successfully created!"
       ReservationMailer.reservation_notification(@reservation).deliver
-      redirect_to restaurants_path
+      redirect_to restaurant_path(@restaurant)
     else
       flash[:error] = "There was an error, please try again."
       redirect_to restaurant_path(@restaurant)

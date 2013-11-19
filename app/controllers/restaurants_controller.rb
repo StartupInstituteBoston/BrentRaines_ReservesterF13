@@ -25,7 +25,7 @@ class RestaurantsController < ApplicationController
     @restaurant = current_user.restaurants.build(restaurant_params)
     if @restaurant.save
       redirect_to @restaurant
-      flash[:sucess] = "Restaurant added!"
+      flash[:success] = "Restaurant added!"
     else
       render 'new'
       flash[:error] = "There was an error, please try again."
