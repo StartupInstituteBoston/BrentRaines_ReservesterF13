@@ -1,57 +1,28 @@
 <% provide(:title, @restaurant.name) %>
 
-<h1><%= @restaurant.name %></h1>
-<h3>Owner: <%= @restaurant.user.full_name %></h3>
-<p><%= @restaurant.description %></p>
-<%= image_tag @restaurant.photo_url %>
-<%= link_to 'Download Menu', @restaurant.menu_url, target: "_blank" unless @restaurant.menu_url.nil? %>
-<%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{full_address(@restaurant)}&zoom=16&size=400x400\
-&markers=color:blue%7C#{full_address(@restaurant)}&sensor=false" %>
-
 <% if current_user?(@restaurant.user) %>
-  <%= link_to "Edit Restaurant", edit_restaurant_path %>
-  <%= link_to "Delete Restaurant", @restaurant, method: :delete,
-       data: { confirm: "Are you sure?" }, title: @restaurant.name %>
-  <table class="table">
-    <tr>
-      <th>Time</th>
-      <th>Email</th>
-      <th>Comments</th>
-      <th></th>
-    </tr>
-    <% if @restaurant.reservations.any? %>
-      <% @restaurant.reservations.each do |reservation| %>
-        <tr>
-          <td><%= reservation.time %></td>
-          <td><%= reservation.email %></td>
-          <td><%= reservation.comment %></td>
-          <td><%= link_to "Marked as confirmed", ([@restaurant, reservation]), method: :delete, data: { confirm: "Are you sure?" } %></td>
-        </tr>
-      <% end %>
-    <% else %>
-      <tr>
-        <td colspan=4>No reservations</td>
-      </tr>
-    <% end %>
-  </table>
+  <ul class="restaurant-edit">
+    <li><%= link_to "Edit Restaurant", edit_restaurant_path %></li>
+    <li><%= link_to "Delete Restaurant", @restaurant, method: :delete,
+         data: { confirm: "Are you sure?" }, title: @restaurant.name %></li>
+  </ul>
 <% end %>
 
-<%= form_for([@restaurant, @reservation]) do |f| %>
+<h1><%= @restaurant.name %></h1>
+<h5>Owned by <%= @restaurant.user.full_name %></h5>
+<div>
+  <p class="restaurant-description col-md-4"><%= @restaurant.description %></p>
+  <div class="col-md-4">
+    <%= image_tag @restaurant.photo_url, alt: "#{@restaurant.name}-photo", class: "restaurant-photo" %>
+  </div>
+  <div class="col-md-4">
+    <%= image_tag "http://maps.googleapis.com/maps/api/staticmap?center=#{full_address(@restaurant)}&zoom=16&size=400x400\
+      &markers=color:blue%7C#{full_address(@restaurant)}&sensor=false", class: "map" %>
+  </div>
+</div>
 
-  <%= f.label :time %>
-  <%= f.date_select :time, ignore_time: true %>
-  <%= f.time_select :time %>
+<%= link_to 'Download Menu', @restaurant.menu_url, target: "_blank" unless @restaurant.menu_url.nil? %>
 
-  <%= f.label :email %>
-  <%= f.email_field :email %>
+<%= render 'reservations/reservation_form' unless current_user?(@restaurant.user) %>
 
-  <%= f.label :comment %>
-  <%= f.text_area :comment %>
-
-  <%= f.submit "Submit", class: "btn btn-large btn-primary" %>
-
-<% end %>
-
-
-
-<%= link_to "Back to Restaurants", restaurants_path %>
+<%= render 'reservations/reservation_table' if current_user?(@restaurant.user) %>

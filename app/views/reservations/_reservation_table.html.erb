@@ -1,0 +1,22 @@
+<table class="table table-striped">
+  <tr>
+    <th>Time</th>
+    <th>Email</th>
+    <th>Comments</th>
+    <th></th>
+  </tr>
+  <% if @restaurant.reservations.any? %>
+    <% @restaurant.reservations.each do |reservation| %>
+      <tr>
+        <td><%= reservation.time %></td>
+        <td><%= reservation.email %></td>
+        <td><%= reservation.comment %></td>
+        <td><%= link_to "Marked as confirmed", ([@restaurant, reservation]), method: :delete, data: { confirm: "Are you sure?" } %></td>
+      </tr>
+    <% end %>
+  <% else %>
+    <tr>
+      <td colspan=4>No reservations</td>
+    </tr>
+  <% end %>
+</table>

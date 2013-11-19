@@ -23,11 +23,6 @@ describe Restaurant do
     it { should_not be_valid }
   end
 
-  describe "when description is greater than 200 char" do
-    before { @restaurant.description = "a"*201 }
-    it { should_not be_valid }
-  end
-
   describe "when user is not present" do
     before { @restaurant.user = nil }
     it { should_not be_valid }

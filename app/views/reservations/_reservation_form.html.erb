@@ -1,0 +1,22 @@
+<h3>Make a reservation:</h3>
+
+<%= form_for([@restaurant, @reservation], data: { validate: "parsley" }, role: "form", class: "form-horizontal" ) do |f| %>
+  
+  <div class="form-group">
+    <%= f.date_select :time, ignore_time: true, discard_year: true, data: { required: true }, class: "form-control" %>
+    <%= f.time_select :time, minute_step: 15, data: { required: true }, class: "form-control" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.email_field :email, data: { required: true }, class: "form-control", placeholder: "Email" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.text_area :comment, class: "form-control", placeholder: "Comments" %>
+  </div>
+
+  <div class="form-group">
+    <%= f.submit "Submit", class: "btn btn-default" %>
+  </div>
+
+<% end %>

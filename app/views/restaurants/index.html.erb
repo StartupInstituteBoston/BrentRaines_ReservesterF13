@@ -1,12 +1,20 @@
 <% provide(:title, "Restaurants") %>
 
+<%= link_to "Add New Restaurant", new_restaurant_path, class: "new-restaurant" if user_signed_in? %>
+
 <h1>Restaurants</h1>
 
-<% @restaurants.each do |restaurant| %>
-  <h2><%= link_to restaurant.name, restaurant_path(restaurant) %></h2>
-  <p><%= restaurant.description %></p>
-  <%= image_tag restaurant.photo_url(:thumb).to_s %>
-  <%= link_to "Edit Restaurant", edit_restaurant_path(restaurant) if current_user?(restaurant.user) %>
-<% end %>
-
-<%= link_to "Add New Restaurant", new_restaurant_path if user_signed_in? %>
+<div class="restaurants">
+  <% @restaurants.each do |restaurant| %>
+    <div class="restaurant-profile">
+      <div class="col-md-4">
+        <%= image_tag restaurant.photo_url(:thumb).to_s, alt: "#{restaurant.name}-thumb" %>
+      </div>
+      <div class="col-md-8">
+        <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
+        <p><%= restaurant.description %></p>
+      </div>
+      <%= link_to "Edit Restaurant", edit_restaurant_path(restaurant), class: "edit-restaurant-link" if current_user?(restaurant.user) %>
+    </div>
+  <% end %>
+</div>

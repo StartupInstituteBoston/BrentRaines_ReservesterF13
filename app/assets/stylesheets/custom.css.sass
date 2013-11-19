@@ -1,4 +1,5 @@
 @import bootstrap
+@import compass
 
 /* universal */
 
@@ -29,9 +30,12 @@ p
 
 input, textarea, select, .uneditable-input
   border: 1px solid #bbb
-  width: 100%
   padding: 10px
   margin-bottom: 15px
+
+.uploader
+  border: none
+  box-shadow: none
 
 /* miscellaneous */
 
@@ -40,3 +44,47 @@ input, textarea, select, .uneditable-input
   float: left
   width: 100%
   margin-top: 45px
+
+/* Home page */
+
+.restaurant-profile
+  position: relative
+  min-height: 275px
+  width: 100%
+  border: 1px solid #bbb
+  border-radius: 5px
+  background-color: rgba(#eee, 0.5)
+  padding: 15px
+  margin: 20px 0
+  h3, p
+    margin-left: 15px
+  img
+    margin: 0 auto
+
+.edit-restaurant-link
+  position: absolute
+  bottom: 0
+  right: 0
+  margin: 5px 10px
+
+.new-restaurant
+  float: right
+
+/* Restaurant page */
+
+.restaurant-description
+  padding: 10px 10px 10px 0
+
+.restaurant-photo
+  margin: 10px auto
+
+.map
+  margin: 10px 0 10px 10px
+
+.restaurant-edit
+  list-style: none
+  position: relative
+  float: right
+  li
+    display: inline
+    margin: 0 5px 10px
