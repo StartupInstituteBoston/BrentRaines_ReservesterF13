@@ -16,5 +16,6 @@ FactoryGirl.define do
     sequence(:last_name) { |n| "User #{n}" }
     sequence(:email)  { |n| "test_user#{n}@example.com" }
     password "foobar123"
+    role "owner"
   end
 end

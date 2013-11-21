@@ -4,10 +4,9 @@
 <div class="restaurants">
   <% @restaurants.each do |restaurant| %>
     <div class="restaurant-profile">
-      <div class="col-md-4">
-        <%= image_tag restaurant.photo_url(:thumb).to_s, alt: "#{restaurant.name}-thumb" %>
-      </div>
-      <div class="col-md-8">
+      <span class="photo-helper"></span>
+      <%= image_tag restaurant.photo_url(:thumb).to_s, alt: "#{restaurant.name}-thumb", class: "restaurant-thumb" %>
+      <div class="col-xs-12 col-sm-6 col-md-7 summary">
         <h3><%= link_to restaurant.name, restaurant_path(restaurant) %></h3>
         <p><%= restaurant.description %></p>
       </div>

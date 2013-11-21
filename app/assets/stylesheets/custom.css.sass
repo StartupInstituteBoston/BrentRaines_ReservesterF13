@@ -1,19 +1,22 @@
 @import bootstrap
-@import compass
 
 /* Overriding Bootstrap */
 
 .navbar-default
   background-color: rgba(white, 0.97)
-  border-color: #ccc
+  border-color: #ccc  
 
 /* universal */
+
+.right
+  float: right
+  
 
 html
   overflow-y: scroll
 
 body
-  margin-top: 57px
+  margin-top: 50px
 
 .background
   padding-top: 15px
@@ -60,17 +63,24 @@ input, textarea, select, .uneditable-input
   width: 100%
   margin-top: 45px
 
+/* Header */
+
+.user-indicator
+  padding: 15px
+  font-style: italic
+  color: #999
+
 /* Home page */
 
 #Restaurants-background
   background-color: #f9f9f9
 
 .restaurant-profile
-  position: relative
-  min-height: 275px
+  min-height: 285px
+  overflow: auto
   width: 100%
   border: 1px solid #ccc
-  border-radius: 3px
+  border-radius: 1px
   background-color: white
   padding: 15px
   margin: 20px 0
@@ -78,6 +88,20 @@ input, textarea, select, .uneditable-input
     margin-left: 15px
   img
     margin: 0 auto
+
+.photo-helper
+  display: inline-block
+  height: 100%
+  vertical-align: middle
+
+.summary
+  float: right
+
+.restaurant-thumb
+  position: relative
+  max-height: 250px
+  max-width: 300px
+  vertical-align: middle
 
 .edit-restaurant-link
   position: absolute
@@ -98,6 +122,7 @@ input, textarea, select, .uneditable-input
 
 .map
   margin: 0 auto 20px
+  max-width: 400px
   width: 100%
 
 .restaurant-edit
@@ -108,3 +133,12 @@ input, textarea, select, .uneditable-input
     margin-right: 15px
     div
       display: inherit
+
+@media (max-width: 768px)
+  .summary
+    float: none
+    text-align: center
+  .restaurant-thumb
+    display: block
+    vertical-align: baseline
+    margin: 0 auto
